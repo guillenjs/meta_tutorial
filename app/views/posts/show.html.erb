@@ -19,40 +19,111 @@
 <% properties = image.data["properties"]%>
 <% profiles = image.data["profiles"]%>
 <% iptc= image.data["profiles"]["iptc"]%>
-      <table>
-        <tr>
+
+<table>
+<tr>
             <th>key</th>
             <th>value</th>
-        </tr>
+</tr>
+<tr>
+    
+<td><b>Title</b></td>
+    <td> <%=iptc["Image Name[2,5]"]%></td>
+</tr>
+<tr>
+    <td><b>Image type</b></td>
+        <td><%=image.type%></td>
+</tr>
+<tr>
+    <td><b>Image mime type</b></td>
+        <td> <%=image.mime_type%></td>
+</tr>
+<tr>
+    <td><b>Image width</b></td>
+        <td>  <%=image.width%> px</td>
+</tr>
+<tr>
+    <td><b>Image Height</b></td>
+        <td> <%=image.height%> px</td>
+</tr>
+<tr>
+    <td><b>Image Size</b></td>
+        <td> <%=image.data["filesize"]%> </td>
+</tr>
 
-            <% properties.each do |key, value| %>
-                <tr>
+</%properties values%>
+<tr>
+    
+    <td><b>Date created</b></td>
+        <td> <%=properties["date:create"] %></td>
+</tr>
+<tr>
+    
+    <td><b>Date modified</b></td>
+        <td> <%=properties["date:modify"]%></td>
+</tr>
+<tr>
+    
+    <td><b>Copyright</b></td>
+        <td> <%=properties["exif:Copyright"]%></td>
+</tr>
+<tr>
+    
+    <td><b>Photographer</b></td>
+        <td> <%=properties["exif:Artist"]%></td>
+</tr>
+<tr>
+    
+    <td><b>Description</b></td>
+        <td> <%=properties["exif:ImageDescription"]%></td>
+</tr>
+<tr>
+    
+    <td><b>Exif Software</b></td>
+        <td> <%=properties["exif:Software"]%></td>
+</tr>
+
+</%iptc values%>
+<tr>
+    
+    <td><b>Keywords</b></td>
+        <td> <%=iptc["Keyword[2,25]"]%></td>
+</tr>
+
+     
+</table>
+<hr>
+
+<table class='extra-table'>
+<% image.data.each do |key, value| %>
+                <tr >
                     <td><b><%=key %></b></td> 
                     <td> <%=value%></td>
                 </tr>
             <% end%>
+</table>
 
-            <% profiles.each do |key, value| %>
-                <tr>
-                    <td><b><%=key %></b></td> 
-                    <td> <%=value%></td>
-                </tr>
-            <% end%>
 
-            <% iptc.each do |key, value| %>
-                <tr>
-                    <td><b><%=key %></b></td> 
-                    <td> <%=value%></td>
-                </tr>
-            <% end%>
+<button class="extra-button">extra</button>
+<button class="extra-close">close extra</button>
 
-             <% image.data.each do |key, value| %>
-                <tr>
-                    <td><b><%=key %></b></td> 
-                    <td> <%=value%></td>
-                </tr>
-            <% end%>
+<script type="text/javascript">
+    var button = document.querySelector('.extra-button')
+    var close = document.querySelector('.extra-close')
 
-    </table><br><br>
+        button.addEventListener('click', (evt) => {
+            document.querySelector('.extra-table').style.display = "block"
+            button.style.display = 'none'
+            close.style.display = 'block'
+        })
 
+          close.addEventListener('click', (evt) => {
+            document.querySelector('.extra-table').style.display = "none"
+            button.style.display = 'block'
+            close.style.display = 'none'
+        })
+ 
+</script>
+
+      
    
