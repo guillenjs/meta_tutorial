@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @post.body %>
+</p>
+
+  <%= image_tag(@post.photo, width: 200) if @post.photo.attached? %><br>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %><br><br>
+
+<%image = MiniMagick::Image.open(@post.photo)%>
+<% properties = image.data["properties"]%>
+<% profiles = image.data["profiles"]%>
+<% iptc= image.data["profiles"]["iptc"]%>
+      <table>
+        <tr>
+            <th>key</th>
+            <th>value</th>
+        </tr>
+
+            <% properties.each do |key, value| %>
+                <tr>
+                    <td><b><%=key %></b></td> 
+                    <td> <%=value%></td>
+                </tr>
+            <% end%>
+
+            <% profiles.each do |key, value| %>
+                <tr>
+                    <td><b><%=key %></b></td> 
+                    <td> <%=value%></td>
+                </tr>
+            <% end%>
+
+            <% iptc.each do |key, value| %>
+                <tr>
+                    <td><b><%=key %></b></td> 
+                    <td> <%=value%></td>
+                </tr>
+            <% end%>
+
+             <% image.data.each do |key, value| %>
+                <tr>
+                    <td><b><%=key %></b></td> 
+                    <td> <%=value%></td>
+                </tr>
+            <% end%>
+
+    </table><br><br>
+
+   
