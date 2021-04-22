@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap/scss/bootstrap";
+// @import "bootstrap/scss/bootstrap";
 
  .all-cont{
      display: flex;
@@ -119,10 +119,10 @@ table {
   
   }
 
-  .modal{
-    background: rgba(255, 255, 255, 0.582);
+  // .modal{
+  //   background: rgba(255, 255, 255, 0.582);
 
-  }
+  // }
 
 
    
