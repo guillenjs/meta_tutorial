@@ -28,7 +28,11 @@
 <tr>
     
 <td><b>Title</b></td>
-    <td> <%=iptc["Image Name[2,5]"]%></td>
+    <%if iptc["Image Name[2,5]"]%>
+    <td> <%=iptc["Image Name[2,5]"].join(",")%></td>
+    <%else%>
+        <td> <%=%></td>
+    <%end%>
 </tr>
 <tr>
     <td><b>Image type</b></td>
@@ -76,6 +80,23 @@
     
     <td><b>Description</b></td>
         <td> <%=properties["exif:ImageDescription"]%></td>
+</tr>
+<td><b>Sub Location</b></td>
+    <% if iptc["Sub-Location[2,92]"]%>
+        <td> <%=iptc["Sub-Location[2,92]"].join(",")%></td>
+    <%else%>
+        <td> <%=%></td>
+    <%end%>
+</tr>
+<tr>
+    
+    <td><b>Make</b></td>
+        <td> <%=properties["exif:Make"]%></td>
+</tr>
+<tr>
+    
+    <td><b>Model</b></td>
+        <td> <%=properties["exif:Model"]%></td>
 </tr>
 <tr>
     
