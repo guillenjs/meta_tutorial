@@ -26,6 +26,11 @@
             <th>value</th>
 </tr>
 <tr>
+
+<tr>
+    <td><b>Filename</b></td>
+        <td><%=@post.photo.blob["filename"]%></td>
+</tr>
     
 <td><b>Title</b></td>
     <%if iptc["Image Name[2,5]"]%>
@@ -68,6 +73,11 @@
 </tr>
 <tr>
     
+    <td><b>Date/Time digitized</b></td>
+        <td> <%=image.exif["DateTimeDigitized"]%></td>
+</tr>
+<tr>
+    
     <td><b>Copyright</b></td>
         <td> <%=properties["exif:Copyright"]%></td>
 </tr>
@@ -78,7 +88,7 @@
 </tr>
 <tr>
     
-    <td><b>Description</b></td>
+    <td><b>Caption</b></td>
         <td> <%=properties["exif:ImageDescription"]%></td>
 </tr>
 <td><b>Sub Location</b></td>
@@ -92,6 +102,16 @@
     
     <td><b>Make</b></td>
         <td> <%=properties["exif:Make"]%></td>
+</tr>
+<tr>
+    
+    <td><b>Body Serial Number</b></td>
+        <td> <%=image.exif["BodySerialNumber"]%></td>
+</tr>
+<tr>
+    
+    <td><b>Lens Model</b></td>
+        <td> <%=image.exif["LensModel"]%></td>
 </tr>
 <tr>
     
