@@ -15,10 +15,23 @@
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %><br><br>
 
-<%image = MiniMagick::Image.open(@post.photo)%>
+</% gem mini_magick is used in order to open up image from active record but also access meta data%>
+<%image = MiniMagick::Image.open(@post.photo) %>
+
+</% gem minexiftool is only used to extract metadata and uses the path provided by minimagick%>
+<% photoMetaData = MiniExiftool.new image.path %>
+
+</% gem exiftool is only used to extract metadata and uses the path provided by minimagick%>
+<% newImageMetaData  = Exiftool.new(image.path)%>
+
+
+
+
 <% properties = image.data["properties"]%>
 <% profiles = image.data["profiles"]%>
 <% iptc= image.data["profiles"]["iptc"]%>
+
+
 
 <table>
 <tr>
@@ -142,8 +155,58 @@
                     <td> <%=value%></td>
                 </tr>
             <% end%>
+
 </table>
 
+<h1>properties</h1>
+<table >
+<%properties.each do |key, value| %>
+                <tr >
+                    <td><b><%=key %></b></td> 
+                    <td> <%=value%></td>
+                </tr>
+            <% end%>
+</table>
+
+<h1>profiles</h1>
+<table >
+<%profiles.each do |key, value| %>
+                <tr >
+                    <td><b><%=key %></b></td> 
+                    <td> <%=value%></td>
+                </tr>
+            <% end%>
+</table>
+
+<h1>iptc</h1>
+<table >
+<%iptc.each do |key, value| %>
+                <tr >
+                    <td><b><%=key %></b></td> 
+                    <td> <%=value%></td>
+                </tr>
+            <% end%>
+</table>
+
+<h1>------------------ gem MiniExiftool--------------------</h1>
+<table >
+<%photoMetaData .as_json.each do |key, value| %>
+                <tr >
+                    <td><b><%=key %></b></td> 
+                    <td> <%=value%></td>
+                </tr>
+            <% end%>
+</table>
+
+<h1>------------------- gem Exiftool ---------------------</h1>
+<table >
+<%newImageMetaData .as_json.each do |key, value| %>
+                <tr >
+                    <td><b><%=key %></b></td> 
+                    <td> <%=value%></td>
+                </tr>
+            <% end%>
+</table>
 
 <button class="extra-button">extra</button>
 <button class="extra-close">close extra</button>
