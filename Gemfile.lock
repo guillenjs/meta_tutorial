@@ -91,7 +91,6 @@ GEM
     concurrent-ruby (1.1.8)
     crass (1.0.6)
     erubi (1.10.0)
-    exif (1.0.1)
     exiftool (1.2.3)
       json
     ffi (1.15.0)
@@ -166,6 +165,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.1.1)
+    rtesseract (3.1.2)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -228,7 +228,6 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
-  exif (~> 1.0, >= 1.0.1)
   exiftool
   jbuilder (~> 2.7)
   listen (~> 3.2)
@@ -237,6 +236,7 @@ DEPENDENCIES
   pg
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.6)
+  rtesseract
   sass-rails (>= 6)
   selenium-webdriver
   spring
@@ -248,7 +248,7 @@ DEPENDENCIES
   webpacker (~> 4.0)
 
 RUBY VERSION
-   ruby 2.7.0p0
+   ruby 2.6.1p33
 
 BUNDLED WITH
    2.2.11

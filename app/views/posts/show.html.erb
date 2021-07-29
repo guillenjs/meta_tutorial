@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+
 <p>
   <strong>Title:</strong>
   <%= @post.title %>
@@ -24,8 +25,7 @@
 </% gem exiftool is only used to extract metadata and uses the path provided by minimagick%>
 <% newImageMetaData  = Exiftool.new(image.path)%>
 
-
-
+</%byebug%>
 
 <% properties = image.data["properties"]%>
 <% profiles = image.data["profiles"]%>
@@ -46,7 +46,7 @@
 </tr>
     
 <td><b>Title</b></td>
-    <%if iptc["Image Name[2,5]"]%>
+    <%if iptc["Image Name[2,5]"] %>
     <td> <%=iptc["Image Name[2,5]"].join(",")%></td>
     <%else%>
         <td> <%=%></td>
@@ -199,8 +199,10 @@
 </table>
 
 <h1>------------------- gem Exiftool ---------------------</h1>
+</% gem exiftool is only used to extract metadata and uses the path provided by minimagick%>
+<% newImageMetaData  = Exiftool.new(image.path)%>
 <table >
-<%newImageMetaData .as_json.each do |key, value| %>
+<% newImageMetaData.as_json.each do |key, value| %>
                 <tr >
                     <td><b><%=key %></b></td> 
                     <td> <%=value%></td>
@@ -228,6 +230,34 @@
         })
  
 </script>
+
+<!-- 
+[{:word=>"NEW", :confidence=>95, :x_start=>196, :y_start=>75, :x_end=>506, :y_end=>207}, 
+{:word=>"YORK", :confidence=>95, :x_start=>656, :y_start=>133, :x_end=>1067, :y_end=>206},
+{:word=>"CITY", :confidence=>95, :x_start=>1220, :y_start=>129, :x_end=>1627, :y_end=>204}, 
+{:word=>"WPA", :confidence=>96, :x_start=>1784, :y_start=>125, :x_end=>2129, :y_end=>203}, 
+{:word=>"ART", :confidence=>95, :x_start=>2284, :y_start=>123, :x_end=>2591, :y_end=>202}, 
+{:word=>"PROJECT", :confidence=>95, :x_start=>2731, :y_start=>120, :x_end=>3370, :y_end=>203}, 
+{:word=>"ea", :confidence=>28, :x_start=>330, :y_start=>3590, :x_end=>1237, :y_end=>4035}, 
+{:word=>"ENV", :confidence=>48, :x_start=>1813, :y_start=>3556, :x_end=>2237, :y_end=>4026},
+{:word=>"BUEN", :confidence=>5, :x_start=>2271, :y_start=>3430, :x_end=>3442, :y_end=>4031}, 
+{:word=>"MURAL", :confidence=>96, :x_start=>800, :y_start=>4117, :x_end=>1440, :y_end=>4234}, 
+{:word=>"BY", :confidence=>96, :x_start=>1529, :y_start=>4117, :x_end=>1743, :y_end=>4230}, 
+{:word=>"PHILLIP", :confidence=>91, :x_start=>1802, :y_start=>4114, :x_end=>2490, :y_end=>4232}, 
+{:word=>"GUSTON", :confidence=>91, :x_start=>2555, :y_start=>4118, :x_end=>3282, :y_end=>4238},
+{:word=>"FOR", :confidence=>92, :x_start=>780, :y_start=>4539, :x_end=>1083, :y_end=>4651}, 
+{:word=>"QUEENSBRIDGE", :confidence=>91, :x_start=>1203, :y_start=>4540, :x_end=>2581, :y_end=>4673}, 
+{:word=>"HOUSES", :confidence=>95, :x_start=>2700, :y_start=>4564, :x_end=>3320, :y_end=>4680}, 
+{:word=>"COMMUNITY", :confidence=>94, :x_start=>778, :y_start=>4733, :x_end=>2251, :y_end=>4861}, 
+{:word=>"CENTER", :confidence=>95, :x_start=>2435, :y_start=>4751, :x_end=>3305, :y_end=>4871}, 
+{:word=>"WORK", :confidence=>96, :x_start=>194, :y_start=>5203, :x_end=>522, :y_end=>5292}, 
+{:word=>"PROJECTS", :confidence=>96, :x_start=>619, :y_start=>5180, :x_end=>1176, :y_end=>5299}, 
+{:word=>"ADMINISTRATION", :confidence=>95, :x_start=>1278, :y_start=>5229, :x_end=>2331, :y_end=>5300},
+{:word=>"ARTS", :confidence=>96, :x_start=>2436, :y_start=>5233, :x_end=>2732, :y_end=>5301}, 
+{:word=>"PROGRAM", :confidence=>96, :x_start=>2823, :y_start=>5236, :x_end=>3370, :y_end=>5306}] 
+--->
+
+ RTesseract.new('test.jpg', lang: 'deu')
 
       
    

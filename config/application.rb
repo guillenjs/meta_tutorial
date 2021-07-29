@@ -1,9 +1,10 @@
 require_relative 'boot'
 
 require 'rails/all'
-require 'exiftool'
-require 'exif'
-require "mini_magick"
+# require 'exiftool'
+# require 'exif'
+# require "mini_magick"
+#require 'exifr/jpeg'
 
 
 # Require the gems listed in Gemfile, including any gems
