@@ -8,24 +8,51 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
-  
+
   end
 
   # GET /posts/new
   def new
     @post = Post.new
-
+    
   end
 
   # GET /posts/1/edit
   def edit
+    
   end
 
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
+
+      # Loop through array of pdf and extract data of each page to an array of strings
+      # store and documents table
+
     respond_to do |format|
       if @post.save
+        image = MiniMagick::Image.open(@post.photo)
+        if image[:format] == "PDF"
+          # convert to array of png images 
+          pdf = Magick::ImageList.new(image.path)
+          data = []
+          #add index number to each png
+          pdf.each_with_index do |page, i|
+             page.write "#{i}_thumbnail.png"
+          end
+          #loop through array of images to extra OCR data
+          pdf.each do |thumbnail|
+              data_ocr = RTesseract.new(thumbnail.filename)
+              data_string = data_ocr.to_s
+              data << data_string
+          end
+          #save extracted data into table
+          @document = Document.new
+          @document.ocr = data.join("")
+          @document.post_id = @post.id
+          @document.save
+        end
+     
         format.html { redirect_to @post, notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
       else
@@ -34,6 +61,7 @@ class PostsController < ApplicationController
       end
     end
   end
+
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
@@ -70,4 +98,5 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :body, :photo)
     end
+
 end

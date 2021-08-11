@@ -16,8 +16,9 @@
 // @import "bootstrap/scss/bootstrap";
 
  .all-cont{
+    width: 100vw;
      display: flex;
-     
+     flex-wrap: wrap;  
  }
 
  .image-cont{

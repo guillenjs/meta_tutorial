@@ -68,4 +68,4 @@ gem "mini_magick"
 
 gem 'rtesseract'
 
-
+gem 'rmagick'

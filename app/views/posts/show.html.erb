@@ -18,6 +18,10 @@
 
 </% gem mini_magick is used in order to open up image from active record but also access meta data%>
 <%image = MiniMagick::Image.open(@post.photo) %>
+</%byebug%>
+
+
+
 
 </% gem minexiftool is only used to extract metadata and uses the path provided by minimagick%>
 <% photoMetaData = MiniExiftool.new image.path %>
@@ -25,7 +29,7 @@
 </% gem exiftool is only used to extract metadata and uses the path provided by minimagick%>
 <% newImageMetaData  = Exiftool.new(image.path)%>
 
-</%byebug%>
+
 
 <% properties = image.data["properties"]%>
 <% profiles = image.data["profiles"]%>
@@ -256,6 +260,8 @@
 {:word=>"ARTS", :confidence=>96, :x_start=>2436, :y_start=>5233, :x_end=>2732, :y_end=>5301}, 
 {:word=>"PROGRAM", :confidence=>96, :x_start=>2823, :y_start=>5236, :x_end=>3370, :y_end=>5306}] 
 --->
+
+
 
  RTesseract.new('test.jpg', lang: 'deu')
 
