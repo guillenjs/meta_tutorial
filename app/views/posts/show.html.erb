@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 
+
 <p>
   <strong>Title:</strong>
   <%= @post.title %>
@@ -205,6 +206,7 @@
 <h1>------------------- gem Exiftool ---------------------</h1>
 </% gem exiftool is only used to extract metadata and uses the path provided by minimagick%>
 <% newImageMetaData  = Exiftool.new(image.path)%>
+
 <table >
 <% newImageMetaData.as_json.each do |key, value| %>
                 <tr >

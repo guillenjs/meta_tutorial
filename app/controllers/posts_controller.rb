@@ -25,10 +25,8 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
-
       # Loop through array of pdf and extract data of each page to an array of strings
       # store and documents table
-
     respond_to do |format|
       if @post.save
         image = MiniMagick::Image.open(@post.photo)
@@ -41,8 +39,8 @@ class PostsController < ApplicationController
              page.write "#{i}_thumbnail.png"
           end
           #loop through array of images to extra OCR data
-          pdf.each do |thumbnail|
-              data_ocr = RTesseract.new(thumbnail.filename)
+          pdf.each do |page|
+              data_ocr = RTesseract.new(page.filename)
               data_string = data_ocr.to_s
               data << data_string
           end
