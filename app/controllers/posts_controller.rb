@@ -8,6 +8,11 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    image = MiniMagick::Image.open(@post.photo)
+    photoMetaData = MiniExiftool.new image.path 
+    photoMetaData.artist = 'this is inside method'
+    photoMetaData.creator = 'this is inside method'
+    photoMetaData.update
 
   end
 

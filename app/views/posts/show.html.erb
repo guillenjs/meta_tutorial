@@ -19,13 +19,17 @@
 
 </% gem mini_magick is used in order to open up image from active record but also access meta data%>
 <%image = MiniMagick::Image.open(@post.photo) %>
-</%byebug%>
+
 
 
 
 
 </% gem minexiftool is only used to extract metadata and uses the path provided by minimagick%>
 <% photoMetaData = MiniExiftool.new image.path %>
+
+<!--<% photoMetaData.artist = 'this is a sample' %>
+<% photoMetaData.creator = 'this is a sample' %>
+<% photoMetaData.save %>-->
 
 </% gem exiftool is only used to extract metadata and uses the path provided by minimagick%>
 <% newImageMetaData  = Exiftool.new(image.path)%>
@@ -38,7 +42,7 @@
 
 
 
-<table>
+<!--<table>
 <tr>
             <th>key</th>
             <th>value</th>
@@ -191,7 +195,7 @@
                     <td> <%=value%></td>
                 </tr>
             <% end%>
-</table>
+</table> -->
 
 <h1>------------------ gem MiniExiftool--------------------</h1>
 <table >
@@ -201,7 +205,7 @@
                     <td> <%=value%></td>
                 </tr>
             <% end%>
-</table>
+</table> 
 
 <h1>------------------- gem Exiftool ---------------------</h1>
 </% gem exiftool is only used to extract metadata and uses the path provided by minimagick%>

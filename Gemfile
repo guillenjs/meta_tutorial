@@ -59,8 +59,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'aws-sdk-s3', require: false
 
 # exiftool wrapper
-gem 'exiftool'
-gem 'mini_exiftool'
+# gem 'exiftool'
+# gem 'mini_exiftool'
 
 
 gem "mini_magick"
@@ -69,3 +69,6 @@ gem "mini_magick"
 gem 'rtesseract'
 
 gem 'rmagick'
+
+gem 'mini_exiftool_vendored'
+gem 'exiftool_vendored'
